@@ -15,7 +15,7 @@ A simple way to create these kinds of plots is missing from other Python package
 The `histpoints` function is designed to produce these plots conventiently, like in the following example:
 
 ```python
-from missing_hep import histpoints
+from matplotlib_hep import histpoints
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stats
