@@ -9,7 +9,7 @@ __all__ = ['histpoints', 'calc_nbins']
 
 def calc_nbins(x, maximum=150):
     n =  (max(x) - min(x)) / (2 * len(x)**(-1/3) * (np.percentile(x, 75) - np.percentile(x, 25)))
-    return min(n, maximum)
+    return np.floor(min(n, maximum))
 
 def poisson_limits(N, kind, confidence=0.6827):
     alpha = 1 - confidence
@@ -38,16 +38,16 @@ def histpoints(x, bins=None, xerr=None, yerr='gamma', normed=False, **kwargs):
     gamma distribution.
 
     Horizontal error bars are omitted by default.
-    These can be enable using the *xerr* argument.
+    These can be enabled using the *xerr* argument.
     Use ``xerr='binwidth'`` to draw horizontal error bars that indicate
     the width of each histogram bin.
 
-    Paramters
+    Parameters
     ---------
 
     x : (n,) array or sequence of (n,) arrays
-        Input values. This takes either a single array or a sequency of
-        arrays which are not required to be of the same length
+        Input values. This takes either a single array or a sequence of
+        arrays, which are not required to be of the same length.
 
     """
     import matplotlib.pyplot as plt
