@@ -41,14 +41,14 @@ plt.plot(xs, norm * stats.norm.pdf(xs, 0, 1), 'b-', lw=2)
 plt.savefig('histpoints.png')
 ```
 
-![histpoints](./histpoints.png)
+<div align="center"><img src="./histpoints.png" width="600px"/></div>
 
 Or, displaying horizontal error bars to mark the bin width:
 ```python
 histpoints(data, xerr='binwidth')
 ```
 
-![histpoints\_binwidth](./histpoints_binwidth.png)
+<div align="center"><img src="./histpoints_binwidth.png" width="600px"/></div>
 
 Note that the `histpoints` function returns the `x` and `y` coordinates of the
 points, as well as `norm`, the integral of the histogram. This can be used to
