@@ -60,3 +60,22 @@ in your data sample more easily.
 By default, `histpoints` chooses the number of bins automatically via the
 [Freedman-Diaconis](https://en.wikipedia.org/wiki/Freedman%E2%80%93Diaconis_rule)
 rule.
+
+## The pull\_plot function
+
+```python
+from matplotlib_hep import plot_pull
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy as sp
+
+data = np.random.normal(0, 1, 1000)
+
+func = lambda x: sp.stats.norm.pdf(x, 0, 1)
+
+plot_pull(data, func)
+plt.savefig('pull.png')
+```
+
+<div align="center"><img src="./pull.png" width="600px"/></div>
+
