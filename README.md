@@ -61,7 +61,7 @@ By default, `histpoints` chooses the number of bins automatically via the
 [Freedman-Diaconis](https://en.wikipedia.org/wiki/Freedman%E2%80%93Diaconis_rule)
 rule.
 
-## The pull\_plot function
+## The plot\_pull function
 
 ```python
 from matplotlib_hep import plot_pull
