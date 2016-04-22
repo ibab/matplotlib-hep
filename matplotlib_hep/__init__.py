@@ -20,8 +20,9 @@ def poisson_limits(N, kind, confidence=0.6827):
         lower = stats.gamma.ppf(alpha / 2, N)
         upper = stats.gamma.ppf(1 - alpha / 2, N + 1)
     elif kind == 'sqrt':
-        lower = sqrt(N)
-        upper = lower
+        err = np.sqrt(N)
+        lower = N - err
+        upper = N + err
     else:
         raise ValueError('Unknown errorbar kind: {}'.format(kind))
     # clip lower bars
@@ -82,7 +83,7 @@ def histpoints(x, bins=None, xerr=None, yerr='gamma', normed=False, **kwargs):
 
     return center, (yerr[0], h, yerr[1]), area
 
-def make_split(ratio):
+def make_split(ratio, gap=0.12):
     import matplotlib.pyplot as plt
     from matplotlib.gridspec import GridSpec
     from matplotlib.ticker import MaxNLocator
@@ -91,8 +92,7 @@ def make_split(ratio):
     xmin, ymin = box.xmin, box.ymin
     xmax, ymax = box.xmax, box.ymax
     gs = GridSpec(2, 1, height_ratios=[ratio, 1 - ratio], left=xmin, right=xmax, bottom=ymin, top=ymax)
-    gs.update(hspace=0.12) 
-    #gs.update(hspace=0.0) 
+    gs.update(hspace=gap)
 
     ax = plt.subplot(gs[0])
     plt.setp(ax.get_xticklabels(), visible=False)
@@ -128,9 +128,9 @@ def plot_pull(data, func):
 
     pull = resid / err
 
-    plt.errorbar(x, pull, yerr=1, color='k', capsize=0, markersize=0, fmt='o', lw=2)
-    plt.ylim(-3, 3)
-    plt.axhline(0, color='k', alpha=0.5)
+    plt.errorbar(x, pull, yerr=1, color='k', fmt='o')
+    plt.ylim(-5, 5)
+    plt.axhline(0, color='b')
 
     plt.sca(ax)
 
